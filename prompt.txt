@@ -1,0 +1,26 @@
+=== RSI‑MACD Divergence (Regular & Hidden) ===
+
+Input Parameters:
+  fast   : 12  (default)
+  slow   : 26  (default)
+  smooth : 9   (default)
+
+Output Columns (added to the OHLC dataframe):
+  macd          – fast SMA – slow SMA
+  signal        – EMA of macd (smooth periods)
+  hist          – macd – signal
+  fractal_top   – 5‑bar pivot highs on hist
+  fractal_bot   – 5‑bar pivot lows on hist
+  regular_bearish – bearish reversal
+  hidden_bearish  – bearish continuation
+  regular_bullish – bullish reversal
+  hidden_bullish  – bullish continuation
+
+=== Strategy Rules ===
+- Long when a Regular Bullish (or – with --hidden – Hidden Bullish) divergence appears.
+- Short when a Regular Bearish (or – with --hidden – Hidden Bearish) divergence appears.
+- Exit the position when:
+    • The opposite signal occurs,
+    • Take‑Profit (TP) is hit,
+    • Stop‑Loss (SL) is hit,
+    • Or the data ends.
